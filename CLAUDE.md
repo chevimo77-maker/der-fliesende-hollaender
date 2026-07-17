@@ -102,3 +102,41 @@ Because copy, nav labels, project captions, etc. all come from `t.de` / `t.en` i
 component script, adding or editing visible text means editing the `t` object in the
 `<script data-dc-script>` block, not the `<x-dc>` markup (which just references
 `{{ t.some.path }}`).
+
+## Working Priorities
+
+When making changes, prioritize in this order:
+
+1. Maintainability
+2. Readability
+3. Small, targeted changes
+4. Performance
+
+## Coding Rules
+
+- Never use `any` unless unavoidable.
+- Prefer existing utilities and patterns over creating new helpers.
+- Keep functions focused on a single responsibility.
+- Avoid code duplication.
+- Match the existing coding style of the repository.
+
+## Before Coding
+
+- Read only the files necessary for the current task.
+- Search for existing implementations before creating new ones.
+- Avoid rewriting working code unless explicitly requested.
+- Minimize edits to unrelated files.
+- Preserve the existing project architecture and bilingual (DE/EN) content structure.
+
+## Git
+
+- Keep changes small and focused.
+- Do not modify unrelated files.
+- Do not rename files unless requested.
+- Preserve existing project structure.
+
+## Responses
+
+- Briefly explain what changed.
+- Mention any assumptions made.
+- If requirements are unclear or information is missing, ask instead of guessing.
