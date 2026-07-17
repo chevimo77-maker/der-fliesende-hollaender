@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700;800;900&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  *::selection { background: var(--accent,#3714F4); color: #fff; }
+  @keyframes fh-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes fh-scrolldot { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 70% { opacity: 1; } 100% { transform: translateY(16px); opacity: 0; } }
+  a { color: inherit; text-decoration: none; }
+  @media (max-width: 900px) {
+    section, footer { padding-left: 22px !important; padding-right: 22px !important; padding-top: 70px !important; }
+    [data-scale-reveal] { padding-left: 22px !important; padding-right: 22px !important; }
+    [data-m="hdr"] { padding-left: 18px !important; padding-right: 18px !important; gap: 12px !important; }
+    [data-m="hdr"] img { height: 40px !important; width: auto !important; }
+    [data-m="nav"] { display: none !important; }
+    [data-m="ctrls"] { gap: 8px !important; }
+    [data-m="ctrls"] > a { padding: 0 14px !important; }
+    #top { padding-top: 116px !important; }
+    [data-m="hero-grid"], [data-m="stack"], [data-m="grid3"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+    [data-m="projgrid"] { grid-template-columns: 1fr !important; }
+    [data-m="projitem"] { grid-column: auto !important; }
+    [data-m="area"] { grid-template-columns: repeat(2, 1fr) !important; }
+    [data-m="hero-stat"] { align-self: start !important; padding-left: 0 !important; }
+    [data-m="hero-statrow"] { justify-content: flex-start !important; }
+    [data-m="hero-cap"] { position: static !important; width: auto !important; height: auto !important; left: auto !important; text-align: left !important; }
+  }
+</style>
+</helmet>
+<div style="font-family: Montserrat, system-ui, sans-serif; background: var(--bg,#efeae1); color: var(--fg,#16130f); min-height: 100vh; overflow-x: hidden; transition: background .5s ease, color .5s ease;">
+
+  <!-- ============ HEADER ============ -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--header-bg,rgba(239,234,225,.8)); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--line,rgba(22,19,15,.14));">
+    <div data-m="hdr" style="max-width: 1500px; margin: 0 auto; padding: 15px 44px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 0px; padding-bottom: 0px">
+      <a href="#top" style="display: flex; align-items: center; gap: 12px;">
+        <span style="display: inline-flex; border-radius: 10px; padding: 7px 9px; box-shadow: 0px 2px 14px 0px #00000000; background-color: #FFFFFF00">
+          <img src="./apple-touch-icon-mrnx5q19-4ic9.png" alt="der fliesende Hollaender" style="height: 62px; display: block; width: 62px">
+        </span>
+        <span style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; text-transform: var(--hcase,lowercase); color: #000; white-space: nowrap;">der fliesende Hollaender</span>
+      </a>
+      <nav data-m="nav" style="display: flex; align-items: center; gap: 34px; font-size: 13px; letter-spacing: .01em; text-transform: var(--hcase,lowercase); font-weight: 500;">
+        <a href="#leistungen" style="opacity: .78;">{{ t.nav.services }}</a>
+        <a href="#referenzen" style="opacity: .78;">{{ t.nav.projects }}</a>
+        <a href="#ueber" style="opacity: .78;">{{ t.nav.about }}</a>
+        <a href="#kontakt" style="opacity: .78;">{{ t.nav.contact }}</a>
+      </nav>
+      <div data-m="ctrls" style="display: flex; align-items: center; gap: 10px;">
+        <button onClick="{{ toggleTheme }}" aria-label="Theme" style="width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--line,rgba(22,19,15,.14)); background: transparent; color: var(--fg,#16130f); cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">
+          <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"></path></svg>
+          </sc-if>
+          <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}">
+            <svg width="16" height="16" viewBox="0 0 24 24"><defs><mask id="fhmoon"><rect width="24" height="24" fill="#fff"></rect><circle cx="16" cy="9" r="8" fill="#000"></circle></mask></defs><circle cx="12" cy="12" r="8.5" fill="currentColor" mask="url(#fhmoon)"></circle></svg>
+          </sc-if>
+        </button>
+        <button onClick="{{ toggleLang }}" style="height: 40px; padding: 0 15px; border-radius: 999px; border: 1px solid var(--line,rgba(22,19,15,.14)); background: transparent; color: var(--fg,#16130f); cursor: pointer; font-family: Montserrat, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .06em; display: inline-flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z"></path></svg>
+          {{ t.otherLang }}
+        </button>
+        <a href="#kontakt" style="height: 40px; padding: 0 20px; border-radius: 999px; background: var(--accent,#3714F4); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: var(--hcase,lowercase); display: inline-flex; align-items: center;">{{ t.cta }}</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" style="padding: 150px 44px 0; max-width: 1500px; margin: 0 auto;">
+    <div data-m="hero-grid" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: end;">
+      <div>
+        <div data-reveal="" style="display: flex; align-items: center; gap: 14px; margin-bottom: 26px;">
+          <span style="width: 8px; height: 8px; border-radius: 999px; background: var(--accent2,#FB3688);"></span>
+          <span style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted,rgba(22,19,15,.6)); font-weight: 600;">{{ t.hero.eyebrow }}</span>
+        </div>
+        <h1 data-reveal="" data-delay="80" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.8rem, 8vw, 7.5rem); line-height: .92; letter-spacing: -.035em; text-transform: var(--hcase,lowercase); margin: 0; max-width: 15ch;">
+          {{ t.hero.title1 }} <span style="color: var(--accent,#3714F4);">{{ t.hero.title2 }}</span>
+        </h1>
+      </div>
+      <div data-reveal="" data-delay="160" data-m="hero-stat" style="padding-left: 0px; align-self: center">
+        <div data-m="hero-statrow" style="display: flex; align-items: center; gap: 4px; font-family: Raleway, sans-serif; font-weight: 800; letter-spacing: -.03em; color: var(--accent,#3714F4); justify-content: flex-end">
+          <span data-count="100" style="font-size: clamp(3.4rem, 7vw, 6rem); line-height: .9;">0</span>
+          <span style="font-size: clamp(2rem, 4vw, 3.4rem);">%</span>
+        </div>
+        <p data-m="hero-cap" style="margin: 14px 0 0; font-size: 1rem; line-height: 1.55; color: var(--muted,rgba(22,19,15,.6)); text-align: right; position: absolute; width: 324px; height: 26px; left: 1029px">{{ t.hero.statCaption }}</p>
+      </div>
+    </div>
+    <p data-reveal="" data-delay="220" style="max-width: 60ch; font-size: clamp(1.05rem, 1.4vw, 1.28rem); line-height: 1.6; color: var(--muted,rgba(22,19,15,.6)); margin: 34px 0 30px; font-weight: 400;">{{ t.hero.sub }}</p>
+    <div data-reveal="" data-delay="260" style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px;">
+      <a href="#kontakt" style="padding: 16px 28px; border-radius: 999px; background: var(--accent,#3714F4); color: #fff; font-size: 14px; font-weight: 600; text-transform: var(--hcase,lowercase); display: inline-flex; align-items: center; gap: 10px;">{{ t.hero.ctaPrimary }} <span style="font-size: 17px;">→</span></a>
+      <a href="#leistungen" style="padding: 16px 28px; border-radius: 999px; border: 1px solid var(--line,rgba(22,19,15,.2)); color: var(--fg,#16130f); font-size: 14px; font-weight: 600; text-transform: var(--hcase,lowercase);">{{ t.hero.ctaSecondary }}</a>
+    </div>
+    <div data-img-reveal="" data-delay="120" style="position: relative; border-radius: 24px; overflow: hidden; height: clamp(360px, 58vw, 720px);">
+      <image-slot id="fh-hero" shape="rect" fit="cover" placeholder="Hero: großformatige Fliesenarbeit / bathroom project"></image-slot>
+      <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to top, rgba(0,0,0,.5), transparent); pointer-events: none;"></div>
+      <div style="position: absolute; left: 28px; bottom: 26px; display: flex; align-items: center; gap: 12px; pointer-events: none;">
+        <span style="width: 9px; height: 9px; border-radius: 999px; background: var(--accent2,#FB3688);"></span>
+        <span style="color: #fff; font-size: 14px; font-weight: 500; letter-spacing: .02em;">{{ t.hero.location }}</span>
+      </div>
+      <div style="position: absolute; right: 24px; bottom: 24px; width: 30px; height: 46px; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; display: flex; justify-content: center; padding-top: 8px; pointer-events: none;">
+        <span style="width: 4px; height: 4px; border-radius: 999px; background: #fff; animation: fh-scrolldot 1.8s ease-in-out infinite;"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATEMENT ============ -->
+  <section style="max-width: 1500px; margin: 0 auto; padding: 120px 44px 40px;">
+    <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 34px;">{{ t.statement.tag }}</div>
+    <div data-m="stack" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: start;">
+      <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 3.4rem); line-height: 1.12; letter-spacing: -.02em; text-transform: var(--hcase,lowercase); margin: 0;">{{ t.statement.lead }}</h2>
+      <div style="display: flex; flex-direction: column; gap: 22px; padding-top: 6px;">
+        <p data-reveal="" data-delay="120" style="font-size: 1.05rem; line-height: 1.65; color: var(--muted,rgba(22,19,15,.6)); margin: 0;">{{ t.statement.p1 }}</p>
+        <p data-reveal="" data-delay="160" style="font-size: 1.05rem; line-height: 1.65; color: var(--muted,rgba(22,19,15,.6)); margin: 0;">{{ t.statement.p2 }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCROLL-SCALE FEATURE IMAGE ============ -->
+  <section style="padding: 40px 0 40px;">
+    <div data-scale-reveal="" style="margin: 0 auto; width: 100%; max-width: 1500px; padding: 0 44px;">
+      <div data-scale-target="" style="position: relative; border-radius: 26px; overflow: hidden; height: clamp(380px, 60vw, 760px); transform: scale(.86); transform-origin: center; will-change: transform;">
+        <image-slot id="fh-feature" shape="rect" fit="cover" placeholder="Große, detailreiche Fliesenfläche / craft close-up"></image-slot>
+        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.42), transparent 60%); pointer-events: none;"></div>
+        <div style="position: absolute; left: clamp(24px,3vw,44px); bottom: clamp(24px,3vw,44px); right: clamp(24px,3vw,44px); pointer-events: none;">
+          <div style="font-family: Raleway, sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.6vw, 2.4rem); line-height: 1.1; text-transform: var(--hcase,lowercase); color: #fff; max-width: 20ch;">{{ t.statement.imageCaption }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}">
+    <section style="border-top: 1px solid var(--line,rgba(22,19,15,.14)); border-bottom: 1px solid var(--line,rgba(22,19,15,.14)); padding: 24px 0; overflow: hidden; margin-top: 40px;">
+      <div style="display: flex; width: max-content; animation: fh-marquee 30s linear infinite;">
+        <sc-for list="{{ marqueeLoop }}" as="m" hint-placeholder-count="10">
+          <span style="font-family: Raleway, sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3.2vw, 2.8rem); letter-spacing: -.02em; text-transform: var(--hcase,lowercase); padding: 0 30px; display: inline-flex; align-items: center; gap: 30px; white-space: nowrap;">{{ m.word }} <span style="color: var(--accent2,#FB3688); font-size: .55em;">◆</span></span>
+        </sc-for>
+      </div>
+    </section>
+  </sc-if>
+
+  <!-- ============ LEISTUNGEN ============ -->
+  <section id="leistungen" style="max-width: 1500px; margin: 0 auto; padding: 108px 44px 30px;">
+    <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 20px;">{{ t.services.tag }}</div>
+    <div data-m="stack" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px;">
+      <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0; max-width: 16ch;">{{ t.services.title }}</h2>
+      <p data-reveal="" data-delay="120" style="font-size: 1.05rem; line-height: 1.6; color: var(--muted,rgba(22,19,15,.6)); margin: 0;">{{ t.services.intro }}</p>
+    </div>
+    <div data-m="grid3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+      <sc-for list="{{ t.services.items }}" as="s" hint-placeholder-count="6">
+        <div data-reveal="" style="background: var(--card,#f6f2ea); border: 1px solid var(--line,rgba(22,19,15,.12)); border-radius: 20px; padding: 32px 30px; min-height: 300px; display: flex; flex-direction: column; transition: transform .5s cubic-bezier(.16,1,.3,1), border-color .3s;" style-hover="transform: translateY(-6px); border-color: var(--accent,#3714F4);">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 15px; color: var(--accent,#3714F4);">{{ s.n }}</span>
+            <span style="width: 7px; height: 7px; border-radius: 999px; background: var(--accent2,#FB3688);"></span>
+          </div>
+          <h3 style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -.02em; text-transform: var(--hcase,lowercase); margin: auto 0 12px;">{{ s.title }}</h3>
+          <p style="font-size: .95rem; line-height: 1.55; color: var(--muted,rgba(22,19,15,.6)); margin: 0 0 20px;">{{ s.desc }}</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ s.tags }}" as="tag" hint-placeholder-count="3">
+              <span style="font-size: 11px; letter-spacing: .02em; text-transform: var(--hcase,lowercase); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line,rgba(22,19,15,.16)); color: var(--muted,rgba(22,19,15,.6));">{{ tag }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ REFERENZEN ============ -->
+  <section id="referenzen" style="max-width: 1500px; margin: 0 auto; padding: 108px 44px 30px;">
+    <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 20px;">{{ t.projects.tag }}</div>
+    <div data-m="stack" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; margin-bottom: 52px;">
+      <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0;">{{ t.projects.title }}</h2>
+      <p data-reveal="" data-delay="120" style="font-size: 1.05rem; line-height: 1.6; color: var(--muted,rgba(22,19,15,.6)); margin: 0;">{{ t.projects.intro }}</p>
+    </div>
+    <div data-m="projgrid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px;">
+      <sc-for list="{{ t.projects.items }}" as="p" hint-placeholder-count="6">
+        <a href="#kontakt" data-m="projitem" style="grid-column: span {{ p.span }}; display: block;">
+          <div data-img-reveal="" style="position: relative; border-radius: 18px; overflow: hidden; height: {{ p.h }}; transition: transform .6s cubic-bezier(.16,1,.3,1);" style-hover="transform: scale(1.012);">
+            <image-slot id="{{ p.slot }}" shape="rect" fit="cover" placeholder="{{ p.title }}"></image-slot>
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), transparent 55%); pointer-events: none;"></div>
+            <div style="position: absolute; left: 22px; bottom: 20px; right: 22px; pointer-events: none;">
+              <div style="font-size: 11px; letter-spacing: .06em; text-transform: var(--hcase,lowercase); color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 6px;">{{ p.cat }}</div>
+              <div style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.35rem; text-transform: var(--hcase,lowercase); color: #fff;">{{ p.title }}</div>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ ÜBER MICH ============ -->
+  <section id="ueber" style="max-width: 1500px; margin: 0 auto; padding: 108px 44px 30px;">
+    <div data-m="stack" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; margin-bottom: 72px;">
+      <div data-img-reveal="" style="position: relative; border-radius: 22px; overflow: hidden; height: clamp(420px, 46vw, 640px);">
+        <image-slot id="fh-portrait" shape="rect" fit="cover" placeholder="Portrait: Robert-Jan Blonk bei der Arbeit"></image-slot>
+      </div>
+      <div>
+        <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 18px;">{{ t.about.tag }}</div>
+        <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5.4vw, 4.6rem); line-height: .98; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0 0 28px;">{{ t.about.name }}</h2>
+        <p data-reveal="" data-delay="120" style="font-size: 1.1rem; line-height: 1.7; color: var(--fg,#16130f); margin: 0 0 20px; opacity: .9;">{{ t.about.p1 }}</p>
+        <p data-reveal="" data-delay="160" style="font-size: 1rem; line-height: 1.7; color: var(--muted,rgba(22,19,15,.6)); margin: 0 0 40px;">{{ t.about.p2 }}</p>
+        <div data-reveal="" data-delay="200" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; border-top: 1px solid var(--line,rgba(22,19,15,.14)); padding-top: 32px;">
+          <sc-for list="{{ t.about.stats }}" as="st" hint-placeholder-count="3">
+            <div>
+              <div data-count="{{ st.n }}" data-suffix="{{ st.suffix }}" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -.02em; color: var(--accent,#3714F4);">{{ st.k }}</div>
+              <div style="font-size: .85rem; color: var(--muted,rgba(22,19,15,.6)); margin-top: 6px; line-height: 1.4;">{{ st.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div data-m="grid3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;">
+      <sc-for list="{{ t.about.principles }}" as="pr" hint-placeholder-count="3">
+        <div data-reveal="" style="background: var(--card,#f6f2ea); border: 1px solid var(--line,rgba(22,19,15,.12)); border-radius: 20px; padding: 34px 30px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--accent,#3714F4); display: flex; align-items: center; justify-content: center; margin-bottom: 22px;">
+            <span style="font-family: Raleway, sans-serif; font-weight: 800; font-size: 20px; color: #fff;">{{ pr.i }}</span>
+          </div>
+          <h3 style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: -.01em; text-transform: var(--hcase,lowercase); margin: 0 0 12px;">{{ pr.title }}</h3>
+          <p style="font-size: .95rem; line-height: 1.6; color: var(--muted,rgba(22,19,15,.6)); margin: 0;">{{ pr.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ EINSATZGEBIET STRIP ============ -->
+  <section style="max-width: 1500px; margin: 0 auto; padding: 90px 44px 30px;">
+    <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 30px;">{{ t.area.tag }}</div>
+    <div data-m="area" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;">
+      <sc-for list="{{ t.area.towns }}" as="town" hint-placeholder-count="5">
+        <div data-reveal="" style="border: 1px solid var(--line,rgba(22,19,15,.14)); border-radius: 16px; padding: 26px 22px; display: flex; align-items: center; justify-content: center; min-height: 92px; font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: -.01em; text-transform: var(--hcase,lowercase);">{{ town }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ============ KONTAKT ============ -->
+  <section id="kontakt" style="max-width: 1500px; margin: 0 auto; padding: 108px 44px 30px;">
+    <div style="background: var(--card,#f6f2ea); border: 1px solid var(--line,rgba(22,19,15,.12)); border-radius: 28px; padding: clamp(36px, 5vw, 70px); display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px;" data-m="stack">
+      <div>
+        <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 18px;">{{ t.contact.tag }}</div>
+        <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.8vw, 5.2rem); line-height: .95; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0 0 24px;">{{ t.contact.title }}</h2>
+        <p data-reveal="" data-delay="120" style="font-size: 1.05rem; line-height: 1.65; color: var(--muted,rgba(22,19,15,.6)); margin: 0 0 40px; max-width: 40ch;">{{ t.contact.sub }}</p>
+        <div data-reveal="" data-delay="160" style="display: flex; flex-direction: column; gap: 22px;">
+          <div>
+            <div style="font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint,rgba(22,19,15,.4)); margin-bottom: 6px;">{{ t.contact.emailLabel }}</div>
+            <div style="font-family: Raleway, sans-serif; font-weight: 600; font-size: 1.25rem;">info@fliesende-hollaender.de</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint,rgba(22,19,15,.4)); margin-bottom: 6px;">{{ t.contact.areaLabel }}</div>
+            <div style="font-size: 1rem; line-height: 1.5;">Schwetzingen · Oftersheim · Plankstadt · Ketsch · Brühl</div>
+          </div>
+        </div>
+      </div>
+      <div data-reveal="" data-delay="120" style="display: flex; flex-direction: column; gap: 14px;">
+        <input placeholder="{{ t.contact.fName }}" style="height: 54px; border-radius: 12px; border: 1px solid var(--line,rgba(22,19,15,.18)); background: var(--bg,#efeae1); color: var(--fg,#16130f); padding: 0 18px; font-family: Montserrat, sans-serif; font-size: .95rem; outline: none;">
+        <input placeholder="{{ t.contact.fEmail }}" style="height: 54px; border-radius: 12px; border: 1px solid var(--line,rgba(22,19,15,.18)); background: var(--bg,#efeae1); color: var(--fg,#16130f); padding: 0 18px; font-family: Montserrat, sans-serif; font-size: .95rem; outline: none;">
+        <textarea placeholder="{{ t.contact.fMsg }}" rows="4" style="border-radius: 12px; border: 1px solid var(--line,rgba(22,19,15,.18)); background: var(--bg,#efeae1); color: var(--fg,#16130f); padding: 16px 18px; font-family: Montserrat, sans-serif; font-size: .95rem; outline: none; resize: vertical;"></textarea>
+        <button style="height: 56px; border-radius: 999px; border: none; background: var(--accent,#3714F4); color: #fff; font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 600; text-transform: var(--hcase,lowercase); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;">{{ t.contact.send }} <span style="font-size: 17px;">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STANDORT / MAP ============ -->
+  <section id="standort" style="max-width: 1500px; margin: 0 auto; padding: 90px 44px 30px;">
+    <div data-reveal="" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent2,#FB3688); font-weight: 600; margin-bottom: 18px;">{{ t.map.tag }}</div>
+    <h2 data-reveal="" data-delay="70" style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2rem, 4.8vw, 3.8rem); line-height: 1.02; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0 0 40px;">{{ t.map.title }}</h2>
+    <div data-img-reveal="" data-delay="120" style="position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--line,rgba(22,19,15,.14)); height: clamp(400px, 46vw, 560px);">
+      <iframe title="Standort" src="https://www.google.com/maps?q=Albert-Schweitzer-Stra%C3%9Fe%2013%2C%2068723%20Schwetzingen&amp;z=15&amp;output=embed" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div style="position: absolute; left: clamp(18px, 3vw, 36px); bottom: clamp(18px, 3vw, 36px); background: var(--card,#f6f2ea); border: 1px solid var(--line,rgba(22,19,15,.14)); border-radius: 18px; padding: 26px 28px; max-width: 360px; box-shadow: 0 24px 60px rgba(0,0,0,.22);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+          <span style="width: 9px; height: 9px; border-radius: 999px; background: var(--accent2,#FB3688);"></span>
+          <span style="font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint,rgba(22,19,15,.4)); font-weight: 600;">{{ t.map.tag }}</span>
+        </div>
+        <div style="font-family: Raleway, sans-serif; font-weight: 700; font-size: 1.12rem; line-height: 1.3; margin-bottom: 8px;">{{ t.map.name }}</div>
+        <div style="font-size: .95rem; color: var(--muted,rgba(22,19,15,.6)); line-height: 1.5; margin-bottom: 22px;">{{ t.map.address }}</div>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Albert-Schweitzer-Stra%C3%9Fe%2013%2C%2068723%20Schwetzingen" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; background: var(--accent,#3714F4); color: #fff; font-size: 13px; font-weight: 600; text-transform: var(--hcase,lowercase);">{{ t.map.directions }} <span style="font-size: 15px;">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="max-width: 1500px; margin: 0 auto; padding: 100px 44px 44px;">
+    <div data-reveal="" style="border-radius: 28px; overflow: hidden; position: relative; padding: clamp(48px, 7vw, 110px) clamp(36px, 5vw, 70px); margin-bottom: 60px; background: var(--accent,#3714F4);">
+      <h2 style="font-family: Raleway, sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5.2vw, 4.6rem); line-height: 1; letter-spacing: -.03em; text-transform: var(--hcase,lowercase); margin: 0 0 22px; color: #fff; max-width: 20ch;">{{ t.footer.ctaTitle }}</h2>
+      <a href="#kontakt" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 999px; background: #fff; color: var(--accent,#3714F4); font-size: 14px; font-weight: 700; text-transform: var(--hcase,lowercase);">{{ t.hero.ctaPrimary }} <span style="font-size: 17px;">→</span></a>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 30px; border-top: 1px solid var(--line,rgba(22,19,15,.14)); padding-top: 44px;">
+      <div>
+        <span style="display: inline-flex; border-radius: 12px; padding: 12px 14px; background-color: #FFFFFF00">
+          <img src="./apple-touch-icon-mrnx5q19-4ic9.png" alt="der fliesende Hollaender" style="height: 52px; display: block;">
+        </span>
+        <p style="margin: 22px 0 0; font-size: .9rem; color: var(--muted,rgba(22,19,15,.6)); max-width: 34ch; line-height: 1.6;">{{ t.footer.tagline }}</p>
+      </div>
+      <nav style="display: flex; gap: 28px; font-size: 13px; letter-spacing: .01em; text-transform: var(--hcase,lowercase); font-weight: 500;">
+        <a href="#leistungen" style="opacity: .78;">{{ t.nav.services }}</a>
+        <a href="#referenzen" style="opacity: .78;">{{ t.nav.projects }}</a>
+        <a href="#ueber" style="opacity: .78;">{{ t.nav.about }}</a>
+        <a href="#kontakt" style="opacity: .78;">{{ t.nav.contact }}</a>
+      </nav>
+    </div>
+    <div style="margin-top: 40px; font-size: .8rem; color: var(--faint,rgba(22,19,15,.4)); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;">
+      <span>© 2026 der fliesende Hollaender · Robert-Jan Blonk</span>
+      <span>{{ t.footer.craft }}</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1440, &quot;height&quot;: 1000 },
+  &quot;defaultTheme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;light&quot;, &quot;dark&quot;], &quot;default&quot;: &quot;light&quot;, &quot;tsType&quot;: &quot;'light' | 'dark'&quot;, &quot;section&quot;: &quot;General&quot; },
+  &quot;defaultLang&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;de&quot;, &quot;en&quot;], &quot;default&quot;: &quot;de&quot;, &quot;tsType&quot;: &quot;'de' | 'en'&quot;, &quot;section&quot;: &quot;General&quot; },
+  &quot;accentColor&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#3714F4&quot;, &quot;#1C6B4A&quot;, &quot;#B4471F&quot;, &quot;#111111&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color&quot; },
+  &quot;accent2Color&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#FB3688&quot;, &quot;#E8B923&quot;, &quot;#3714F4&quot;, &quot;#16130F&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color&quot; },
+  &quot;headingCase&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;lowercase&quot;, &quot;normal&quot;], &quot;default&quot;: &quot;lowercase&quot;, &quot;tsType&quot;: &quot;'lowercase' | 'normal'&quot;, &quot;section&quot;: &quot;Type&quot; },
+  &quot;showMarquee&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; },
+  &quot;revealMotion&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;cinematic&quot;, &quot;subtle&quot;, &quot;off&quot;], &quot;default&quot;: &quot;cinematic&quot;, &quot;tsType&quot;: &quot;'cinematic' | 'subtle' | 'off'&quot;, &quot;section&quot;: &quot;Motion&quot; }
+}">
+class Component extends DCLogic {
+  state = { lang: null, theme: null };
+
+  themes = {
+    dark: {
+      '--bg': '#100e0b', '--bg2': '#17140f', '--fg': '#f3efe6',
+      '--muted': 'rgba(243,239,230,.58)', '--faint': 'rgba(243,239,230,.4)',
+      '--line': 'rgba(243,239,230,.14)', '--card': '#17140f',
+      '--header-bg': 'rgba(16,14,11,.78)'
+    },
+    light: {
+      '--bg': '#efeae1', '--bg2': '#e6e0d4', '--fg': '#16130f',
+      '--muted': 'rgba(22,19,15,.6)', '--faint': 'rgba(22,19,15,.4)',
+      '--line': 'rgba(22,19,15,.14)', '--card': '#f6f2ea',
+      '--header-bg': 'rgba(239,234,225,.8)'
+    }
+  };
+
+  t = {
+    de: {
+      otherLang: 'EN', cta: 'Anfragen',
+      nav: { services: 'Leistungen', projects: 'Referenzen', about: 'Über mich', contact: 'Kontakt' },
+      hero: {
+        eyebrow: 'Fliesenleger · Schwetzingen · seit 2019',
+        title1: 'Präzision in',
+        title2: 'jeder Fuge.',
+        statCaption: 'Zufriedenheit — jedes Projekt persönlich begleitet, von der Idee bis zur letzten Fuge.',
+        sub: 'Robert-Jan Blonk — Ihr Einzelhandwerker für hochwertige Fliesenarbeiten und durchdachte Raumgestaltung. Handwerk, das man sieht und spürt.',
+        ctaPrimary: 'Projekt anfragen',
+        ctaSecondary: 'Leistungen ansehen',
+        location: 'Schwetzingen & Umgebung'
+      },
+      statement: {
+        tag: 'Handwerk mit Haltung',
+        lead: 'Eine Fliese ist kein Detail. Sie ist die Oberfläche, die Sie jeden Tag berühren, sehen und spüren.',
+        p1: 'Deshalb beginnt gute Arbeit lange vor der ersten Fliese — mit Zuhören, Aufmaß und einem ehrlichen Plan. Kein grüner Aufpreis, keine leeren Versprechen.',
+        p2: 'Vom einzelnen Raum bis zur kompletten Sanierung: Ich verbinde saubere Planung mit handwerklicher Präzision, damit das Ergebnis über Jahre überzeugt.',
+        imageCaption: 'Millimetergenau verlegt — für Flächen, die auch aus der Nähe stimmen.'
+      },
+      services: {
+        tag: 'Was ich für Sie tue',
+        title: 'Leistungen für Ihren Raum',
+        intro: 'Vom einzelnen Raum bis zur kompletten Sanierung — sauber geplant, präzise ausgeführt.',
+        items: [
+          { n: '/01', title: 'Fliesenverlegung', desc: 'Wand und Boden, im Groß- und Kleinformat — millimetergenau verlegt.', tags: ['Wandfliesen', 'Bodenfliesen', 'Großformat'] },
+          { n: '/02', title: 'Badsanierung', desc: 'Ihr Bad neu gedacht: von der Planung bis zur letzten Silikonfuge.', tags: ['Planung', 'Abdichtung', 'Komplettbad'] },
+          { n: '/03', title: 'Naturstein', desc: 'Marmor, Granit und Feinsteinzeug — fachgerecht verarbeitet und versiegelt.', tags: ['Marmor', 'Granit', 'Versiegelung'] },
+          { n: '/04', title: 'Raumgestaltung', desc: 'Materialien, Formate und Farben, die zusammen ein stimmiges Ganzes ergeben.', tags: ['Beratung', 'Material', 'Konzept'] },
+          { n: '/05', title: 'Reparatur & Ausbesserung', desc: 'Beschädigte Fliesen und Fugen fachgerecht und unauffällig instand gesetzt.', tags: ['Fugen', 'Austausch', 'Sanierung'] },
+          { n: '/06', title: 'Individuelle Beratung', desc: 'Ich nehme mir Zeit, um Ihre Wünsche genau zu verstehen — von der ersten Idee an.', tags: ['Vor Ort', 'Aufmaß', 'Angebot'] }
+        ]
+      },
+      projects: {
+        tag: 'Ausgewählte Arbeiten',
+        title: 'Referenzen',
+        intro: 'Ein Einblick in umgesetzte Projekte. Jedes Vorhaben ist einzigartig.',
+        items: [
+          { slot: 'fh-p1', span: 4, h: 'clamp(300px, 34vw, 460px)', cat: 'Badsanierung', title: 'Modernes Bad in Anthrazit' },
+          { slot: 'fh-p2', span: 2, h: 'clamp(300px, 34vw, 460px)', cat: 'Naturstein', title: 'Naturstein-Dusche' },
+          { slot: 'fh-p3', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Bodenfliesen', title: 'Großformat Wohnbereich' },
+          { slot: 'fh-p4', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Wandfliesen', title: 'Küchenrückwand' },
+          { slot: 'fh-p5', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Komplettsanierung', title: 'Gäste-WC' }
+        ]
+      },
+      about: {
+        tag: 'Über mich',
+        name: 'Robert-Jan Blonk',
+        p1: 'Als erfahrener Fliesenleger und Einzelhandwerker bin ich seit 2019 Ihr zuverlässiger Partner für hochwertige Fliesenarbeiten und umfassende Raumgestaltung in Schwetzingen, Oftersheim, Plankstadt, Ketsch, Brühl und Umgebung.',
+        p2: 'Jedes Projekt ist einzigartig. Deshalb nehme ich mir Zeit für eine individuelle Beratung — von der ersten Idee bis zur finalen Umsetzung stehe ich Ihnen mit Fachwissen und handwerklichem Können zur Seite.',
+        stats: [
+          { n: 2019, suffix: '', k: '2019', v: 'Im Handwerk selbstständig' },
+          { n: 5, suffix: '+', k: '5+', v: 'Orte im Einsatzgebiet' },
+          { n: 100, suffix: '%', k: '100%', v: 'Individuelle Beratung' }
+        ],
+        principles: [
+          { i: 'A', title: 'Individuelle Beratung', desc: 'Ich höre zu und plane gemeinsam mit Ihnen — jede Lösung ist auf Ihren Raum und Ihr Budget zugeschnitten.' },
+          { i: 'B', title: 'Handwerkliche Präzision', desc: 'Saubere Kanten, gleichmäßige Fugen, langlebige Ergebnisse. Qualität, die auch im Detail überzeugt.' },
+          { i: 'C', title: 'Regionale Nähe', desc: 'Als Handwerker aus der Region bin ich schnell vor Ort und bleibe Ihr Ansprechpartner — auch nach dem Projekt.' }
+        ]
+      },
+      area: { tag: 'Einsatzgebiet', towns: ['Schwetzingen', 'Oftersheim', 'Plankstadt', 'Ketsch', 'Brühl'] },
+      contact: {
+        tag: 'Kontakt',
+        title: 'Lassen Sie uns sprechen.',
+        sub: 'Erzählen Sie mir von Ihrem Vorhaben. Ich melde mich zeitnah mit einer ehrlichen Einschätzung.',
+        emailLabel: 'E-Mail', areaLabel: 'Einsatzgebiet',
+        fName: 'Ihr Name', fEmail: 'Ihre E-Mail', fMsg: 'Ihr Projekt', send: 'Anfrage senden'
+      },
+      map: {
+        tag: 'Standort',
+        title: 'Hier finden Sie mich',
+        name: 'Der fliesende Hollaender — Fliesen, Platten, Mosaikleger',
+        address: 'Albert-Schweitzer-Straße 13, 68723 Schwetzingen',
+        directions: 'Route planen'
+      },
+      footer: {
+        ctaTitle: 'Bereit für saubere Fugen und schöne Flächen?',
+        tagline: 'Hochwertige Fliesenarbeiten und Raumgestaltung im Raum Schwetzingen — mit Präzision, Qualität und Sorgfalt.',
+        craft: 'Premium-Handwerk aus der Region'
+      }
+    },
+    en: {
+      otherLang: 'DE', cta: 'Enquire',
+      nav: { services: 'Services', projects: 'Projects', about: 'About', contact: 'Contact' },
+      hero: {
+        eyebrow: 'Tiler · Schwetzingen · since 2019',
+        title1: 'Precision in',
+        title2: 'every joint.',
+        statCaption: 'Satisfaction — every project personally guided, from the idea to the last joint.',
+        sub: 'Robert-Jan Blonk — your independent craftsman for high-quality tiling and considered room design. Workmanship you can see and feel.',
+        ctaPrimary: 'Start a project',
+        ctaSecondary: 'View services',
+        location: 'Schwetzingen & surroundings'
+      },
+      statement: {
+        tag: 'Craft with conviction',
+        lead: 'A tile is not a detail. It is the surface you touch, see and feel every single day.',
+        p1: 'That is why good work begins long before the first tile — with listening, measuring and an honest plan. No green premium, no empty promises.',
+        p2: 'From a single room to a full renovation: I combine clean planning with genuine craftsmanship, so the result still convinces years later.',
+        imageCaption: 'Laid to the millimetre — for surfaces that hold up close.'
+      },
+      services: {
+        tag: 'What I do for you',
+        title: 'Services for your space',
+        intro: 'From a single room to a full renovation — carefully planned, precisely executed.',
+        items: [
+          { n: '/01', title: 'Tile installation', desc: 'Wall and floor, large and small format — laid to the millimetre.', tags: ['Wall tiles', 'Floor tiles', 'Large format'] },
+          { n: '/02', title: 'Bathroom renovation', desc: 'Your bathroom, rethought: from planning to the last line of silicone.', tags: ['Planning', 'Waterproofing', 'Full bath'] },
+          { n: '/03', title: 'Natural stone', desc: 'Marble, granite and porcelain — expertly worked and sealed.', tags: ['Marble', 'Granite', 'Sealing'] },
+          { n: '/04', title: 'Room design', desc: 'Materials, formats and colours that come together as a coherent whole.', tags: ['Consulting', 'Materials', 'Concept'] },
+          { n: '/05', title: 'Repairs & touch-ups', desc: 'Damaged tiles and joints restored expertly and invisibly.', tags: ['Joints', 'Replacement', 'Restoration'] },
+          { n: '/06', title: 'Personal consultation', desc: 'I take the time to understand exactly what you want — from the very first idea.', tags: ['On site', 'Measuring', 'Quote'] }
+        ]
+      },
+      projects: {
+        tag: 'Selected work',
+        title: 'Projects',
+        intro: 'A glimpse of completed projects. Every one of them is unique.',
+        items: [
+          { slot: 'fh-p1', span: 4, h: 'clamp(300px, 34vw, 460px)', cat: 'Bathroom', title: 'Modern bath in anthracite' },
+          { slot: 'fh-p2', span: 2, h: 'clamp(300px, 34vw, 460px)', cat: 'Natural stone', title: 'Natural-stone shower' },
+          { slot: 'fh-p3', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Floor tiles', title: 'Large-format living area' },
+          { slot: 'fh-p4', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Wall tiles', title: 'Kitchen splashback' },
+          { slot: 'fh-p5', span: 2, h: 'clamp(260px, 26vw, 360px)', cat: 'Full renovation', title: 'Guest WC' }
+        ]
+      },
+      about: {
+        tag: 'About',
+        name: 'Robert-Jan Blonk',
+        p1: 'As an experienced tiler and independent craftsman, I have been your reliable partner since 2019 for high-quality tiling and comprehensive room design in Schwetzingen, Oftersheim, Plankstadt, Ketsch, Brühl and the surrounding area.',
+        p2: 'Every project is unique. That is why I take the time for a personal consultation — from the first idea to the final result, I support you with expertise and genuine craftsmanship.',
+        stats: [
+          { n: 2019, suffix: '', k: '2019', v: 'Independent craftsman' },
+          { n: 5, suffix: '+', k: '5+', v: 'Towns in the service area' },
+          { n: 100, suffix: '%', k: '100%', v: 'Personal consultation' }
+        ],
+        principles: [
+          { i: 'A', title: 'Personal consultation', desc: 'I listen and plan together with you — every solution is tailored to your space and your budget.' },
+          { i: 'B', title: 'Craftsmanship precision', desc: 'Clean edges, even joints, durable results. Quality that convinces down to the last detail.' },
+          { i: 'C', title: 'Local presence', desc: 'As a craftsman from the region I am quickly on site and remain your contact — even after the project.' }
+        ]
+      },
+      area: { tag: 'Service area', towns: ['Schwetzingen', 'Oftersheim', 'Plankstadt', 'Ketsch', 'Brühl'] },
+      contact: {
+        tag: 'Contact',
+        title: "Let's talk.",
+        sub: 'Tell me about your project. I will get back to you promptly with an honest assessment.',
+        emailLabel: 'Email', areaLabel: 'Service area',
+        fName: 'Your name', fEmail: 'Your email', fMsg: 'Your project', send: 'Send enquiry'
+      },
+      map: {
+        tag: 'Location',
+        title: 'Where to find me',
+        name: 'Der fliesende Hollaender — Tiles, slabs & mosaic laying',
+        address: 'Albert-Schweitzer-Straße 13, 68723 Schwetzingen',
+        directions: 'Get directions'
+      },
+      footer: {
+        ctaTitle: 'Ready for clean joints and beautiful surfaces?',
+        tagline: 'High-quality tiling and room design in the Schwetzingen area — with precision, quality and care.',
+        craft: 'Premium craft from the region'
+      }
+    }
+  };
+
+  get lang() { return this.state.lang || this.props.defaultLang || 'de'; }
+  get theme() { return this.state.theme || this.props.defaultTheme || 'light'; }
+
+  pickColor(v, fallback) {
+    if (Array.isArray(v)) v = v[0];
+    if (typeof v === 'string' && v.indexOf(',') !== -1) v = v.split(',')[0];
+    v = (v || '').trim();
+    return v || fallback;
+  }
+
+  applyTheme() {
+    const s = document.documentElement.style;
+    const vars = this.themes[this.theme];
+    Object.keys(vars).forEach(k => s.setProperty(k, vars[k]));
+    s.setProperty('color-scheme', this.theme);
+    s.setProperty('--accent', this.pickColor(this.props.accentColor, '#3714F4'));
+    s.setProperty('--accent2', this.pickColor(this.props.accent2Color, '#FB3688'));
+    s.setProperty('--hcase', (this.props.headingCase || 'lowercase') === 'normal' ? 'none' : 'lowercase');
+  }
+
+  componentDidMount() {
+    this.applyTheme();
+    this.initScroll();
+  }
+  componentDidUpdate() {
+    this.applyTheme();
+    // Re-arm counters when language switches (numbers re-render as text).
+    if (this._teardown) { this._teardown(); this.initScroll(); }
+  }
+  componentWillUnmount() { if (this._teardown) this._teardown(); }
+
+  initScroll() {
+    const motion = this.props.revealMotion || 'cinematic';
+    const text = Array.from(document.querySelectorAll('[data-reveal]'));
+    const imgs = Array.from(document.querySelectorAll('[data-img-reveal]'));
+    const counters = Array.from(document.querySelectorAll('[data-count]'));
+    const scaleTargets = Array.from(document.querySelectorAll('[data-scale-target]'));
+    const heroImg = document.querySelector('#fh-hero');
+    const listeners = [];
+    const timers = [];
+
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+    if (motion === 'off') {
+      text.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      imgs.forEach(el => { el.style.clipPath = 'none'; const m = el.querySelector('image-slot,iframe,img'); if (m && m.id !== 'fh-hero') m.style.transform = 'none'; });
+      scaleTargets.forEach(el => { el.style.transform = 'none'; });
+      counters.forEach(el => { el.textContent = this.fmtCount(el); });
+      this._teardown = () => {};
+      return;
+    }
+
+    const yShift = motion === 'subtle' ? 18 : 34;
+    const imgScale = motion === 'subtle' ? 1.12 : 1.32;
+
+    text.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = `translateY(${yShift}px)`;
+      const dl = el.getAttribute('data-delay') || 0;
+      el.style.transition = `opacity .9s cubic-bezier(.16,1,.3,1) ${dl}ms, transform .9s cubic-bezier(.16,1,.3,1) ${dl}ms`;
+    });
+    imgs.forEach(el => {
+      const dl = el.getAttribute('data-delay') || 0;
+      el.style.clipPath = 'inset(100% 0 0 0)';
+      el.style.transition = `clip-path 1.25s cubic-bezier(.16,1,.3,1) ${dl}ms, transform .6s cubic-bezier(.16,1,.3,1)`;
+      el.style.willChange = 'clip-path';
+      const m = el.querySelector('image-slot, iframe, img');
+      if (m && m.id !== 'fh-hero') {
+        m.style.transform = `scale(${imgScale})`;
+        m.style.transition = `transform 1.7s cubic-bezier(.16,1,.3,1) ${dl}ms`;
+        m.style.willChange = 'transform';
+      }
+    });
+
+    const revealText = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    const revealImg = el => {
+      el.style.clipPath = 'inset(0 0 0 0)';
+      const m = el.querySelector('image-slot, iframe, img');
+      if (m && m.id !== 'fh-hero') m.style.transform = 'none';
+    };
+
+    const pending = new Set();
+    text.forEach(el => pending.add({ t: 't', el }));
+    imgs.forEach(el => pending.add({ t: 'i', el }));
+    counters.forEach(el => pending.add({ t: 'c', el }));
+
+    const runCounter = el => {
+      const target = parseFloat(el.getAttribute('data-count')) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const dur = 1400;
+      const start = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - start) / dur);
+        const val = Math.round(target * easeOut(p));
+        el.textContent = val.toLocaleString('de-DE', { useGrouping: target < 10000 && target >= 1000 ? false : true }) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const check = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      pending.forEach(entry => {
+        const r = entry.el.getBoundingClientRect();
+        if (r.top < vh * 0.9 && r.bottom > 0) {
+          if (entry.t === 't') revealText(entry.el);
+          else if (entry.t === 'i') revealImg(entry.el);
+          else if (entry.t === 'c') runCounter(entry.el);
+          pending.delete(entry);
+        }
+      });
+      // Scroll-scale expanding image (Cura signature).
+      scaleTargets.forEach(el => {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const prog = 1 - Math.abs(center - vh / 2) / (vh / 2 + r.height / 2);
+        const clamped = Math.max(0, Math.min(1, prog));
+        const scale = 0.86 + 0.14 * clamped;
+        el.style.transform = `scale(${scale.toFixed(3)})`;
+        el.style.borderRadius = (26 - 18 * clamped).toFixed(1) + 'px';
+      });
+      // Hero parallax.
+      if (heroImg) {
+        const box = heroImg.parentElement;
+        const r = box.getBoundingClientRect();
+        const progress = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+        const shift = -Math.max(-1, Math.min(1, progress)) * 90;
+        heroImg.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
+      }
+    };
+
+    // Oversize the hero image for parallax travel.
+    if (heroImg) {
+      heroImg.style.position = 'absolute';
+      heroImg.style.left = '0'; heroImg.style.right = '0';
+      heroImg.style.top = '-12%'; heroImg.style.height = '124%';
+      heroImg.style.willChange = 'transform';
+    }
+
+    const onScroll = () => requestAnimationFrame(check);
+    document.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', onScroll);
+    listeners.push(['scroll', onScroll, true], ['resize', onScroll, false]);
+    requestAnimationFrame(() => requestAnimationFrame(check));
+
+    const safety = setTimeout(() => {
+      pending.forEach(entry => {
+        if (entry.t === 't') revealText(entry.el);
+        else if (entry.t === 'i') revealImg(entry.el);
+        else if (entry.t === 'c') runCounter(entry.el);
+      });
+      pending.clear();
+    }, 4000);
+    timers.push(safety);
+
+    this._teardown = () => {
+      listeners.forEach(([type, fn, cap]) => {
+        if (type === 'scroll') document.removeEventListener('scroll', fn, cap);
+        else window.removeEventListener('resize', fn);
+      });
+      timers.forEach(clearTimeout);
+    };
+  }
+
+  fmtCount(el) {
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    return target.toLocaleString('de-DE', { useGrouping: target < 10000 && target >= 1000 ? false : true }) + suffix;
+  }
+
+  toggleLang = () => this.setState({ lang: this.lang === 'de' ? 'en' : 'de' });
+  toggleTheme = () => this.setState({ theme: this.theme === 'dark' ? 'light' : 'dark' });
+
+  renderVals() {
+    const t = this.t[this.lang];
+    const words = ['Fliesenverlegung', 'Badsanierung', 'Naturstein', 'Raumgestaltung', 'Präzision'];
+    const marqueeLoop = words.concat(words).map((w, i) => ({ word: w, id: i }));
+    return {
+      t,
+      marqueeLoop,
+      showMarquee: this.props.showMarquee !== false,
+      isDark: this.theme === 'dark',
+      isLight: this.theme === 'light',
+      toggleLang: this.toggleLang,
+      toggleTheme: this.toggleTheme
+    };
+  }
+}
+</script>
+</body>
+</html>
