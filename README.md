@@ -11,8 +11,8 @@ page and rendered client-side by a bundled React runtime.
 - `support.js` — bundled dc-runtime (parses `.dc.html`, loads React/ReactDOM/Babel from
   CDN, mounts the component).
 - `image-slot.js` — `<image-slot>` custom element for user-fillable images, backed by
-  `.image-slots.state.json`.
-- `.image-slots.state.json` — persisted image content for each slot (hero, portrait,
+  `image-slots.state.json`.
+- `image-slots.state.json` — persisted image content for each slot (hero, portrait,
   project photos).
 
 ## Running locally
@@ -28,5 +28,5 @@ python3 -m http.server 8080
 ## Deploying
 
 Any static host works. Make sure `Der Fliesende Hollaender.dc.html`, `support.js`,
-`image-slot.js`, `.image-slots.state.json`, and the `assets/`/`uploads/` folders are
+`image-slot.js`, `image-slots.state.json`, and the `assets/`/`uploads/` folders are
 all served from the same directory.
