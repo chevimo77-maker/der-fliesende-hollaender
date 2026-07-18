@@ -137,6 +137,8 @@ When making changes, prioritize in this order:
 
 ## Responses
 
-- Briefly explain what changed.
+- Briefly explain what changed. no more than 300 characters
 - Mention any assumptions made.
 - If requirements are unclear or information is missing, ask instead of guessing.
+- Do not overexplain.
+
