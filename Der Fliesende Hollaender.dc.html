@@ -115,52 +115,87 @@
         </h1>
       </div>
       <div data-reveal="" data-delay="160" data-m="hero-stat" style="padding-left: 0px; align-self: center">
-        <div data-m="hero-cubes" style="position: relative; width: 100%; max-width: 340px; margin-left: auto; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; perspective: 1200px;">
-          <div data-cube-scene style="position: relative; width: 66%; height: 66%; transform-style: preserve-3d;">
+        <div data-m="hero-cubes" style="position: relative; width: 100%; max-width: 340px; height: 340px; margin-left: auto; perspective: 1900px; overflow: visible;">
+          <div data-cube-scene style="position: absolute; top: 50%; left: 50%; width: 660px; height: 660px; margin: -330px 0 0 -330px; transform-style: preserve-3d; transform: scale(0.5);">
 
-            <div data-cube="pinkTR" style="position: absolute; top: 8%; right: 0; width: 20%; height: 20%; transform-style: preserve-3d;">
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border: 5px solid #c92f6e; transform: translate(-50%,-50%) translateZ(-13px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; border: 5px solid #e03a80; transform: translate(-50%,-50%) rotateY(90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; border: 5px solid #e03a80; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; border: 5px solid #ff5296; transform: translate(-50%,-50%) rotateX(90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; border: 5px solid #d13376; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border: 5px solid #f93f8c; transform: translate(-50%,-50%) translateZ(13px);"></div>
+            <!-- pink outline top-right -->
+            <div data-cube="pinkTR" style="position: absolute; top: 13px; right: 0; width: 132px; height: 132px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 132px; border: 7px solid #c92f6e; transform: translate(-50%,-50%) translateZ(-22px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 44px; height: 132px; border: 7px solid #e03a80; transform: translate(-50%,-50%) rotateY(90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 44px; height: 132px; border: 7px solid #e03a80; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 44px; border: 7px solid #ff5296; transform: translate(-50%,-50%) rotateX(90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 44px; border: 7px solid #d13376; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 132px; border: 7px solid #f93f8c; transform: translate(-50%,-50%) translateZ(22px);"></div>
             </div>
 
-            <div data-cube="orange" style="position: absolute; top: 24%; left: 8%; width: 56%; height: 56%; transform-style: preserve-3d;">
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: #a83c06; transform: translate(-50%,-50%) translateZ(37px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #cf5a09; transform: translate(-50%,-50%) rotateY(90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #d97612; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #e6a91d; transform: translate(-50%,-50%) rotateX(90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #c14e08; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: linear-gradient(135deg,#fbdc32 0%,#f5941e 55%,#f15d0d 100%); transform: translate(-50%,-50%) translateZ(-37px);"></div>
+            <!-- ORANGE -->
+            <div data-cube="orange" style="position: absolute; top: 40px; left: 13px; width: 370px; height: 370px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; background: #a83c06; transform: translate(-50%,-50%) translateZ(61px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; background: #cf5a09; transform: translate(-50%,-50%) rotateY(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; background: #d97612; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; background: #e6a91d; transform: translate(-50%,-50%) rotateX(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; background: #c14e08; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; background: linear-gradient(135deg,#fbdc32 0%,#f5941e 55%,#f15d0d 100%); transform: translate(-50%,-50%) translateZ(-61px);"></div>
             </div>
 
-            <div data-cube="blue" style="position: absolute; bottom: 16%; right: 8%; width: 56%; height: 56%; transform-style: preserve-3d;">
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: #01528f; transform: translate(-50%,-50%) translateZ(37px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #016ab8; transform: translate(-50%,-50%) rotateY(90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #018ad0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #01a5df; transform: translate(-50%,-50%) rotateX(90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #015a99; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(112px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: linear-gradient(160deg,#00ccf3 0%,#0083e7 100%); transform: translate(-50%,-50%) translateZ(-37px);"></div>
+            <!-- ORANGE FRAME -->
+            <div data-cube="orangeFrame" data-cube-parent="orange" style="position: absolute; top: 40px; left: 13px; width: 370px; height: 370px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; border: 32px solid #c96e12; transform: translate(-50%,-50%) translateZ(61px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; border: 32px solid #e0871a; transform: translate(-50%,-50%) rotateY(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; border: 32px solid #e0871a; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; border: 32px solid #f2a838; transform: translate(-50%,-50%) rotateX(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; border: 32px solid #f2a838; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; border: 32px solid #f5941e; transform: translate(-50%,-50%) translateZ(-61px);"></div>
             </div>
 
-            <div data-cube="purple" style="position: absolute; top: 33%; left: 33%; width: 34%; height: 34%; transform-style: preserve-3d;">
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: #160a8f; transform: translate(-50%,-50%) translateZ(22px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #3a13c9; transform: translate(-50%,-50%) rotateY(90deg) translateZ(68px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; background: #6b1fe0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(68px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #8b30f0; transform: translate(-50%,-50%) rotateX(90deg) translateZ(68px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; background: #1c0aa8; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(68px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: linear-gradient(145deg,#af3efc 0%,#2009ee 100%); transform: translate(-50%,-50%) translateZ(-22px);"></div>
+            <!-- BLUE -->
+            <div data-cube="blue" style="position: absolute; bottom: 26px; right: 13px; width: 370px; height: 370px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; background: #01528f; transform: translate(-50%,-50%) translateZ(61px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; background: #016ab8; transform: translate(-50%,-50%) rotateY(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; background: #018ad0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; background: #01a5df; transform: translate(-50%,-50%) rotateX(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; background: #015a99; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; background: linear-gradient(160deg,#00ccf3 0%,#0083e7 100%); transform: translate(-50%,-50%) translateZ(-61px);"></div>
             </div>
 
-            <div data-cube="pinkBL" style="position: absolute; bottom: 0; left: 8%; width: 20%; height: 20%; transform-style: preserve-3d;">
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border: 5px solid #c92f6e; transform: translate(-50%,-50%) translateZ(-13px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; border: 5px solid #e03a80; transform: translate(-50%,-50%) rotateY(90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 33%; height: 100%; border: 5px solid #e03a80; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; border: 5px solid #ff5296; transform: translate(-50%,-50%) rotateX(90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 33%; border: 5px solid #d13376; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(40px);"></div>
-              <div style="position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border: 5px solid #f93f8c; transform: translate(-50%,-50%) translateZ(13px);"></div>
+            <!-- BLUE FRAME -->
+            <div data-cube="blueFrame" data-cube-parent="blue" style="position: absolute; bottom: 26px; right: 13px; width: 370px; height: 370px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; border: 33px solid #016ab8; transform: translate(-50%,-50%) translateZ(61px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; border: 33px solid #018ad0; transform: translate(-50%,-50%) rotateY(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 122px; height: 370px; border: 33px solid #018ad0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; border: 33px solid #14a6e6; transform: translate(-50%,-50%) rotateX(90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 122px; border: 33px solid #14a6e6; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(185px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 370px; height: 370px; border: 33px solid #00b0f0; transform: translate(-50%,-50%) translateZ(-61px);"></div>
+            </div>
+
+            <!-- PURPLE -->
+            <div data-cube="purple" style="position: absolute; top: 218px; left: 218px; width: 224px; height: 224px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 224px; background: #160a8f; transform: translate(-50%,-50%) translateZ(37px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 74px; height: 224px; background: #3a13c9; transform: translate(-50%,-50%) rotateY(90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 74px; height: 224px; background: #6b1fe0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 74px; background: #8b30f0; transform: translate(-50%,-50%) rotateX(90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 74px; background: #1c0aa8; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 224px; background: linear-gradient(145deg,#af3efc 0%,#2009ee 100%); transform: translate(-50%,-50%) translateZ(-37px);"></div>
+            </div>
+
+            <!-- PURPLE FRAME -->
+            <div data-cube="purpleFrame" data-cube-parent="purple" style="position: absolute; top: 218px; left: 218px; width: 224px; height: 224px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 224px; border: 32px solid #241299; transform: translate(-50%,-50%) translateZ(37px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 74px; height: 224px; border: 32px solid #4a1fd0; transform: translate(-50%,-50%) rotateY(90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 74px; height: 224px; border: 32px solid #4a1fd0; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 74px; border: 32px solid #7b2af0; transform: translate(-50%,-50%) rotateX(90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 74px; border: 32px solid #7b2af0; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(112px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 224px; height: 224px; border: 32px solid #af3efc; transform: translate(-50%,-50%) translateZ(-37px);"></div>
+            </div>
+
+            <!-- pink outline bottom-left -->
+            <div data-cube="pinkBL" style="position: absolute; bottom: 0; left: 13px; width: 132px; height: 132px; transform-style: preserve-3d;">
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 132px; border: 7px solid #c92f6e; transform: translate(-50%,-50%) translateZ(-22px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 44px; height: 132px; border: 7px solid #e03a80; transform: translate(-50%,-50%) rotateY(90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 44px; height: 132px; border: 7px solid #e03a80; transform: translate(-50%,-50%) rotateY(-90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 44px; border: 7px solid #ff5296; transform: translate(-50%,-50%) rotateX(90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 44px; border: 7px solid #d13376; transform: translate(-50%,-50%) rotateX(-90deg) translateZ(66px);"></div>
+              <div style="position: absolute; top: 50%; left: 50%; width: 132px; height: 132px; border: 7px solid #f93f8c; transform: translate(-50%,-50%) translateZ(22px);"></div>
             </div>
 
           </div>
@@ -625,11 +660,14 @@ class Component extends DCLogic {
     const timers = [];
 
     const CUBE_CFG = {
-      orange: { rx: 0, ry: 180, rz: 90, speed: 1 },
-      blue: { rx: 180, ry: 0, rz: -90, speed: -1 },
-      purple: { rx: 180, ry: 0, rz: -90, speed: 1.6 },
-      pinkTR: { rx: 0, ry: 0, rz: 0, speed: 0.6 },
-      pinkBL: { rx: 0, ry: 0, rz: 0, speed: -0.6 }
+      orange: { x: 58, y: 33, z: 0, rx: 0, ry: 180, rz: 90, speed: 1 },
+      blue: { x: -58, y: -47, z: 0, rx: 180, ry: 0, rz: -90, speed: -1 },
+      purple: { x: 0, y: 0, z: 27, rx: 180, ry: 0, rz: -90, speed: 1.6 },
+      pinkTR: { x: -62, y: 50, z: 0, rx: 0, ry: 0, rz: 0, speed: 0.6 },
+      pinkBL: { x: 51, y: -61, z: 0, rx: 0, ry: 0, rz: 0, speed: -0.6 },
+      orangeFrame: { x: 0, y: 0, z: 0, parent: 'orange' },
+      blueFrame: { x: 0, y: 0, z: 0, parent: 'blue' },
+      purpleFrame: { x: 0, y: 0, z: 0, parent: 'purple' }
     };
     const cubeEls = cubeScene
       ? Array.from(cubeScene.querySelectorAll('[data-cube]')).map(el => ({
@@ -730,8 +768,9 @@ class Component extends DCLogic {
       if (cubeEls.length) {
         const spin = window.scrollY * 0.25;
         cubeEls.forEach(({ el, cfg }) => {
-          const s = spin * cfg.speed;
-          el.style.transform = `rotateX(${(cfg.rx + s).toFixed(2)}deg) rotateY(${cfg.ry}deg) rotateZ(${cfg.rz}deg)`;
+          const base = cfg.parent ? CUBE_CFG[cfg.parent] : cfg;
+          const s = spin * base.speed;
+          el.style.transform = `translate3d(${cfg.x}px, ${cfg.y}px, ${cfg.z}px) rotateX(${(base.rx + s).toFixed(2)}deg) rotateY(${base.ry}deg) rotateZ(${base.rz}deg)`;
         });
       }
     };
