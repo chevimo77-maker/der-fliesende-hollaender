@@ -345,7 +345,7 @@
   &quot;defaultLang&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;de&quot;, &quot;en&quot;], &quot;default&quot;: &quot;de&quot;, &quot;tsType&quot;: &quot;'de' | 'en'&quot;, &quot;section&quot;: &quot;General&quot; },
   &quot;accentColor&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#3714F4&quot;, &quot;#1C6B4A&quot;, &quot;#B4471F&quot;, &quot;#111111&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color&quot; },
   &quot;accent2Color&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: [&quot;#FB3688&quot;, &quot;#E8B923&quot;, &quot;#3714F4&quot;, &quot;#16130F&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Color&quot; },
-  &quot;headingCase&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;lowercase&quot;, &quot;normal&quot;], &quot;default&quot;: &quot;lowercase&quot;, &quot;tsType&quot;: &quot;'lowercase' | 'normal'&quot;, &quot;section&quot;: &quot;Type&quot; },
+  &quot;headingCase&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;lowercase&quot;, &quot;normal&quot;], &quot;default&quot;: &quot;normal&quot;, &quot;tsType&quot;: &quot;'lowercase' | 'normal'&quot;, &quot;section&quot;: &quot;Type&quot; },
   &quot;showMarquee&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Layout&quot; },
   &quot;revealMotion&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;cinematic&quot;, &quot;subtle&quot;, &quot;off&quot;], &quot;default&quot;: &quot;cinematic&quot;, &quot;tsType&quot;: &quot;'cinematic' | 'subtle' | 'off'&quot;, &quot;section&quot;: &quot;Motion&quot; }
 }">
@@ -551,7 +551,7 @@ class Component extends DCLogic {
     s.setProperty('color-scheme', this.theme);
     s.setProperty('--accent', this.pickColor(this.props.accentColor, '#3714F4'));
     s.setProperty('--accent2', this.pickColor(this.props.accent2Color, '#FB3688'));
-    s.setProperty('--hcase', (this.props.headingCase || 'lowercase') === 'normal' ? 'none' : 'lowercase');
+    s.setProperty('--hcase', (this.props.headingCase || 'normal') === 'normal' ? 'none' : 'lowercase');
   }
 
   componentDidMount() {
