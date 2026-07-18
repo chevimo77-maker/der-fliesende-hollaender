@@ -572,6 +572,7 @@ class Component extends DCLogic {
     const counters = Array.from(document.querySelectorAll('[data-count]'));
     const scaleTargets = Array.from(document.querySelectorAll('[data-scale-target]'));
     const heroImg = document.querySelector('#fh-hero');
+    const cubeFrame = document.querySelector('[data-m="hero-cubes"] iframe');
     const listeners = [];
     const timers = [];
 
@@ -662,6 +663,10 @@ class Component extends DCLogic {
         const progress = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
         const shift = -Math.max(-1, Math.min(1, progress)) * 90;
         heroImg.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
+      }
+      // Hero cube iframe: drive its rotation from page scroll.
+      if (cubeFrame && cubeFrame.contentWindow) {
+        cubeFrame.contentWindow.postMessage({ type: 'fh-cube-scroll', value: window.scrollY * 0.25 }, '*');
       }
     };
 
